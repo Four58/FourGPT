@@ -3,7 +3,7 @@
 import Image from "next/image";
 import SendIcon from "@public/icon/send-icon.png";
 import UploadIcon from "@public/icon/upload-icon.png";
-import { useEffect, useRef, KeyboardEvent } from "react";
+import { useEffect, useRef, KeyboardEvent, FormEvent } from "react";
 
 type props = {
   submit: (userInput: string | undefined) => void;
@@ -26,14 +26,16 @@ const TextInput = ({ submit }: props) => {
     }
   };
 
-  const handleKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+  const handleKeyPress = (
+    e: KeyboardEvent<HTMLTextAreaElement> & FormEvent<HTMLFormElement>
+  ) => {
     if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      onSubmitHandler();
+      onSubmitHandler(e);
     }
   };
 
-  const onSubmitHandler = () => {
+  const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
     if (!userInput.current?.value) return;
     submit(userInput.current.value);
     userInput.current.value = "";
@@ -69,7 +71,6 @@ const TextInput = ({ submit }: props) => {
       </div>
       <button
         type="submit"
-        onClick={onSubmitHandler}
         className="bg-gray-500 self-end rounded-full p-1 hover:bg-gray-300 cursor-pointer"
       >
         <Image src={SendIcon} alt="send icon" className="w-4 h-4" />
