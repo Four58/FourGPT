@@ -37,6 +37,7 @@ const TextInput = ({ submit }: props) => {
     if (!userInput.current?.value) return;
     submit(userInput.current.value);
     userInput.current.value = "";
+    handleInputChange();
   };
 
   return (

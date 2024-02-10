@@ -16,12 +16,14 @@ const Content = ({ content }: props) => {
         <div className="flex flex-col gap-8" key={index}>
           <div>
             <p className="font-semibold">You</p>
-            <p className="leading-7 font-light">{content.question}</p>
+            <p className="leading-7 font-light whitespace-pre-wrap text-gray-200">
+              {content.question}
+            </p>
           </div>
           <div>
             <p className="font-semibold">four58</p>
             <Markdown
-              className="leading-7 font-light max-w-xl prose dark:prose-invert"
+              className="leading-7 font-light max-w-xl text-gray-200 prose dark:prose-invert"
               children={content.answer}
               remarkPlugins={[remarkGfm]}
               components={{
