@@ -24,7 +24,6 @@ const Content = ({ content }: props) => {
             <p className="font-semibold">four58</p>
             <Markdown
               className="leading-7 font-light max-w-xl text-gray-200 prose dark:prose-invert"
-              children={content.answer}
               remarkPlugins={[remarkGfm]}
               components={{
                 code(props) {
@@ -33,10 +32,11 @@ const Content = ({ content }: props) => {
                   return match ? (
                     <SyntaxHighlighter
                       PreTag="div"
-                      children={String(children).replace(/\n$/, "")}
                       language={match[1]}
                       style={oneDark}
-                    />
+                    >
+                      {String(children).replace(/\n$/, "")}
+                    </SyntaxHighlighter>
                   ) : (
                     <code {...rest} className={className}>
                       {children}
@@ -44,7 +44,9 @@ const Content = ({ content }: props) => {
                   );
                 },
               }}
-            />
+            >
+              {content.answer}
+            </Markdown>
           </div>
         </div>
       ))}
