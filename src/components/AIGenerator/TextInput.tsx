@@ -3,14 +3,14 @@
 import Image from "next/image";
 import SendIcon from "@public/icon/send-icon.png";
 import UploadIcon from "@public/icon/upload-icon.png";
-import { FormEvent, useEffect, useRef } from "react";
+import { useEffect, useRef, KeyboardEvent } from "react";
 
 type props = {
   submit: (userInput: string | undefined) => void;
 };
 
 const TextInput = ({ submit }: props) => {
-  const userInput = useRef<HTMLInputElement>(null);
+  const userInput = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (userInput.current) {
@@ -18,9 +18,23 @@ const TextInput = ({ submit }: props) => {
     }
   }, []);
 
-  const onSubmitHandler = (e: FormEvent<HTMLFormElement>) => {
+  const handleInputChange = () => {
+    if (userInput.current) {
+      userInput.current.style.height = "auto"; // Reset height to auto to recalculate rows
+      userInput.current.style.height = `${userInput.current.scrollHeight}px`;
+      userInput.current.style.maxHeight = "100px";
+    }
+  };
+
+  const handleKeyPress = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      onSubmitHandler();
+    }
+  };
+
+  const onSubmitHandler = () => {
     if (!userInput.current?.value) return;
-    e.preventDefault();
     submit(userInput.current.value);
     userInput.current.value = "";
   };
@@ -28,10 +42,10 @@ const TextInput = ({ submit }: props) => {
   return (
     <form
       onSubmit={onSubmitHandler}
-      className="z-10 flex w-96 lg:w-[640px] p-2 border-[1px] bg-black rounded-2xl border-gray-700"
+      className="z-10 flex w-96 lg:w-[640px] self-center p-2 border-[1px] bg-black rounded-2xl border-gray-700"
     >
       <div className="flex gap-2 w-full">
-        <div className="p-1 hover:bg-gray-700 rounded-full cursor-pointer">
+        <div className="p-1 hover:bg-gray-700 self-end rounded-full cursor-pointer">
           <input
             type="file"
             accept="image/*,.pdf"
@@ -43,15 +57,19 @@ const TextInput = ({ submit }: props) => {
             className="w-4 h-4 cursor-pointer"
           />
         </div>
-        <input
+        <textarea
+          rows={1}
+          onInput={handleInputChange}
           ref={userInput}
+          onKeyDown={handleKeyPress}
           placeholder="Ask anything :)"
-          className="bg-transparent text-white text-sm outline-none focus:outline-none w-full"
+          className="bg-transparent self-center resize-none text-white text-sm outline-none focus:outline-none w-full"
         />
       </div>
       <button
         type="submit"
-        className="bg-gray-500 rounded-full p-1 hover:bg-gray-300 cursor-pointer"
+        onClick={onSubmitHandler}
+        className="bg-gray-500 self-end rounded-full p-1 hover:bg-gray-300 cursor-pointer"
       >
         <Image src={SendIcon} alt="send icon" className="w-4 h-4" />
       </button>
