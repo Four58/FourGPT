@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import CreateButton from "../AIGenerator/CreateButton";
+import CreateButton from "./CreateButton";
 
 const MockHistoryItem = [
   {

@@ -51,7 +51,7 @@ const GeneratorSection = () => {
       <div className="justify-center items-center flex w-full h-full">
         <div className="flex h-full flex-col w-[640px]">
           <AIContent content={content} />
-          <div className="w-full mb-3 flex items-center absolute bottom-0">
+          <div className="w-[640px] mb-3 absolute bottom-0 flex items-center justify-center">
             <TextInput submit={submitHandler} />
           </div>
         </div>
