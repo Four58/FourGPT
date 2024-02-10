@@ -11,11 +11,25 @@ type props = {
 
 const ContentSection = ({ content }: props) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [contentLength, setContentLength] = useState(content.length);
+  const [prevScrollHeight, setPrevScrollHeight] = useState(
+    ref.current?.scrollHeight || 0
+  );
   useEffect(() => {
+    if (!ref.current) return;
+    if (content.length > contentLength) {
+      ref.current.scrollTop =
+        ref.current.scrollHeight - ref.current.clientHeight;
+      setContentLength(content.length);
+    }
     const scrollToBottom = () => {
       if (ref.current) {
-        const { scrollHeight, clientHeight } = ref.current;
-        ref.current.scrollTop = scrollHeight - clientHeight;
+        const { scrollHeight, clientHeight, scrollTop } = ref.current;
+        setPrevScrollHeight(scrollHeight);
+        const isAtBottom = scrollTop + clientHeight >= prevScrollHeight;
+        if (isAtBottom) {
+          ref.current.scrollTop = scrollHeight - clientHeight;
+        }
       }
     };
 
