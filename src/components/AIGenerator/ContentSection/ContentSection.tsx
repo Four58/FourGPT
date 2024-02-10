@@ -9,7 +9,7 @@ type props = {
   content: ContentType[];
 };
 
-const AIContent = ({ content }: props) => {
+const ContentSection = ({ content }: props) => {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const scrollToBottom = () => {
@@ -31,4 +31,4 @@ const AIContent = ({ content }: props) => {
   );
 };
 
-export default AIContent;
+export default ContentSection;
