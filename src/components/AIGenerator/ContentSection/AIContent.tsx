@@ -24,7 +24,7 @@ const AIContent = ({ content }: props) => {
   return (
     <div
       ref={ref}
-      className="px-4 h-full flex flex-col overflow-y-auto mt-4 mb-28"
+      className="px-4 h-full w-full flex flex-col overflow-y-auto mt-4 mb-28"
     >
       {content.length !== 0 ? <Content content={content} /> : <NoContent />}
     </div>

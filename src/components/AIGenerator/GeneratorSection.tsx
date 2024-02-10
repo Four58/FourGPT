@@ -49,9 +49,9 @@ const GeneratorSection = () => {
     <div className="h-screen w-full flex flex-col py-4">
       <p className="ml-4 font-semibold text-gray-300">FourGPT</p>
       <div className="justify-center items-center flex w-full h-full">
-        <div className="flex h-full flex-col w-[640px]">
+        <div className="flex justify-center items-center h-full flex-col w-[640px]">
           <AIContent content={content} />
-          <div className="w-[640px] mb-3 absolute bottom-0 flex items-center justify-center">
+          <div className="w-64 sm:w-96 md:w-[640px] mb-3 absolute bottom-0 flex items-center justify-center">
             <TextInput submit={submitHandler} />
           </div>
         </div>

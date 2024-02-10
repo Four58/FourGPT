@@ -43,7 +43,7 @@ const TextInput = ({ submit }: props) => {
   return (
     <form
       onSubmit={onSubmitHandler}
-      className="z-10 flex w-96 lg:w-[640px] self-center p-2 border-[1px] bg-black rounded-2xl border-gray-700"
+      className="z-10 flex w-full self-center p-2 border-[1px] bg-black rounded-2xl border-gray-700"
     >
       <div className="flex gap-2 w-full">
         <div className="p-1 hover:bg-gray-700 self-end rounded-full cursor-pointer">
