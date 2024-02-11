@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div className="flex fixed w-full flex-col h-screen">
           <Navbar />
-          <div className="flex flex-1">
+          <div className="flex h-full pt-12">
             <HistoryBar MockHistoryItem={MockHistoryItem} />
             <div className="h-full w-full bg-gray-900">{children}</div>
           </div>

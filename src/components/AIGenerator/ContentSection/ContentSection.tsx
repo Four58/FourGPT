@@ -11,12 +11,8 @@ type props = {
 };
 
 const ContentSection = ({ content }: props) => {
-  const [ref] = useAutoScrollToBottom({ content });
   return (
-    <div
-      ref={ref}
-      className="px-4 h-full w-full flex flex-col overflow-y-auto mt-4 mb-28"
-    >
+    <div className="px-4 h-full w-full flex flex-col">
       {content.length !== 0 ? <Content content={content} /> : <NoContent />}
     </div>
   );
