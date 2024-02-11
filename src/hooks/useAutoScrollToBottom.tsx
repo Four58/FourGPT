@@ -8,9 +8,7 @@ type props = {
 const useAutoScrollToBottom = ({ content }: props) => {
   const ref = useRef<HTMLDivElement>(null);
   const [contentLength, setContentLength] = useState(content.length);
-  const [prevScrollHeight, setPrevScrollHeight] = useState(
-    ref.current?.scrollHeight || 0
-  );
+  const prevScrollTop = useRef<number>(ref.current?.scrollTop || 0);
 
   useEffect(() => {
     if (!ref.current) return;
@@ -18,22 +16,15 @@ const useAutoScrollToBottom = ({ content }: props) => {
     if (content.length > contentLength) {
       ref.current.scrollTop =
         ref.current.scrollHeight - ref.current.clientHeight;
-      setContentLength(content.length);
+      setContentLength((prev) => prev + 1);
     }
 
-    const scrollToBottom = () => {
-      if (ref.current) {
-        const { scrollHeight, clientHeight, scrollTop } = ref.current;
-        setPrevScrollHeight(scrollHeight); //using prevScrollHeight instead of scrollHeight directly, make it correspond with scrollTop and clientHeight correctly
-        const isAtBottom = scrollTop + clientHeight >= prevScrollHeight;
-        if (isAtBottom) {
-          ref.current.scrollTop = scrollHeight - clientHeight;
-        }
-      }
-    };
-
-    scrollToBottom();
-  }, [content]);
+    const { scrollHeight, clientHeight, scrollTop } = ref.current;
+    if (scrollTop >= prevScrollTop.current) {
+      ref.current.scrollTop = scrollHeight - clientHeight;
+      prevScrollTop.current = scrollTop;
+    }
+  }, [content, contentLength]);
 
   return [ref];
 };
