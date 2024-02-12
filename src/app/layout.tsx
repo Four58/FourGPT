@@ -45,7 +45,7 @@ export default function RootLayout({
           <Navbar />
           <div className="flex h-full pt-12">
             <HistoryBar MockHistoryItem={MockHistoryItem} />
-            <div className="h-full w-full bg-gray-900">{children}</div>
+            <div className="h-full w-full bg-gray-800">{children}</div>
           </div>
         </div>
       </body>

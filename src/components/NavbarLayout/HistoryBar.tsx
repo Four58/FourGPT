@@ -13,7 +13,7 @@ type props = {
 const HistoryBar = ({ MockHistoryItem }: props) => {
   const router = useRouter();
   return (
-    <div className="hidden lg:flex flex-col px-2 py-4 border-r-[1px] gap-3 h-full border-gray-700">
+    <div className="hidden bg-gray-900 lg:flex flex-col px-2 py-4 border-r-[1px] gap-3 h-full border-gray-700">
       <CreateButton />
       <p className="text-xs text-gray-300">History</p>
       {MockHistoryItem.map((item) => (
@@ -22,7 +22,7 @@ const HistoryBar = ({ MockHistoryItem }: props) => {
           onClick={() => router.push("/")}
           key={item.url}
         >
-          <p className="text-sm truncate px-2">{item.title}</p>
+          <p className="text-sm text-white truncate px-2">{item.title}</p>
         </div>
       ))}
     </div>

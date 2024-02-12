@@ -17,10 +17,10 @@ const Navbar = () => {
   const router = useRouter();
   const pathname = usePathname();
   return (
-    <div className="flex absolute z-20 w-full p-2 gap-4 border-b-[1px] border-gray-700">
+    <div className="flex bg-black absolute z-20 w-full p-2 gap-4 border-b-[1px] border-gray-700">
       {Navigation.map((item, index) => (
         <div
-          className={`px-4 py-1 rounded-3xl shadow hover:bg-gray-600 cursor-pointer ${
+          className={`px-4 py-1 rounded-3xl text-white shadow-lg hover:bg-gray-600 cursor-pointer ${
             pathname === item.url ? "bg-gray-800" : ""
           }`}
           key={index}
