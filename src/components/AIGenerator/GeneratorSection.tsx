@@ -1,12 +1,14 @@
 "use client";
 
 import TextInput from "./TextInput";
-import AIContent from "./ContentSection/AIContent";
+import ContentSection from "./ContentSection/ContentSection";
 import { useState } from "react";
 import { ContentType } from "@/model/Content";
+import useAutoScrollToBottom from "@/hooks/useAutoScrollToBottom";
 
 const GeneratorSection = () => {
   const [content, setContent] = useState<ContentType[]>([]);
+
   const submitHandler = async (userInput: string | undefined) => {
     try {
       if (userInput === undefined) return;
@@ -45,16 +47,21 @@ const GeneratorSection = () => {
       console.error(error);
     }
   };
+
+  const [ref] = useAutoScrollToBottom({ content });
+
   return (
-    <div className="h-screen w-full flex flex-col py-4">
-      <p className="ml-4 font-semibold text-gray-300">FourGPT</p>
-      <div className="justify-center items-center flex w-full h-full">
-        <div className="flex justify-center items-center h-full flex-col w-[640px]">
-          <AIContent content={content} />
-          <div className="w-64 sm:w-96 md:w-[640px] mb-3 absolute bottom-0 flex items-center justify-center">
-            <TextInput submit={submitHandler} />
-          </div>
+    <div className="flex h-full flex-col w-full">
+      <div
+        ref={ref}
+        className="w-full h-full flex overflow-y-scroll items-center justify-center"
+      >
+        <div className="flex justify-center items-center h-full flex-col w-full px-10 md:px-0 md:w-[700px]">
+          <ContentSection content={content} />
         </div>
+      </div>
+      <div className="w-full max-w-4xl place-self-center px-10 mb-3 flex items-center justify-center">
+        <TextInput submit={submitHandler} />
       </div>
     </div>
   );
