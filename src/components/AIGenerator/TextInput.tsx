@@ -48,18 +48,18 @@ const TextInput = ({ submit }: props) => {
       className="z-10 flex w-full self-center p-2 border-[1px] bg-black rounded-2xl border-gray-700"
     >
       <div className="flex gap-2 w-full">
-        <div className="p-1 hover:bg-gray-700 self-end rounded-full cursor-pointer">
+        <label
+          htmlFor="upload-picture"
+          className="p-1 relative hover:bg-gray-700 self-end rounded-full cursor-pointer"
+        >
           <input
+            id="upload-picture"
             type="file"
             accept="image/*,.pdf"
-            className=" w-4 h-4 opacity-0 cursor-pointer absolute"
+            className="cursor-pointer hidden"
           />
-          <Image
-            src={UploadIcon}
-            alt="upload icon"
-            className="w-4 h-4 cursor-pointer"
-          />
-        </div>
+          <Image src={UploadIcon} alt="upload icon" className="w-4 h-4" />
+        </label>
         <textarea
           rows={1}
           onInput={handleInputChange}
