@@ -43,7 +43,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <SpeedInsights />
-        <div className="flex fixed w-full flex-col h-screen">
+        <div className="flex fixed w-full flex-col h-dvh">
           <Navbar />
           <div className="flex h-full pt-12">
             <HistoryBar MockHistoryItem={MockHistoryItem} />
