@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.10",
+    "@vercel/speed-insights": "^1.0.9",
     "ai": "^2.2.33",
     "next": "14.1.0",
     "openai": "^4.26.1",

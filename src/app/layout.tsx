@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/NavbarLayout/Navbar";
 import HistoryBar from "@/components/NavbarLayout/HistoryBar";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -41,6 +42,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
+        <SpeedInsights />
         <div className="flex fixed w-full flex-col h-screen">
           <Navbar />
           <div className="flex h-full pt-12">
