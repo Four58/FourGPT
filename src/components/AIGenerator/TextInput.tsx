@@ -22,7 +22,7 @@ const TextInput = ({ submit }: props) => {
     if (userInput.current) {
       userInput.current.style.height = "auto"; // Reset height to auto to recalculate rows
       userInput.current.style.height = `${userInput.current.scrollHeight}px`;
-      userInput.current.style.maxHeight = "100px";
+      userInput.current.style.maxHeight = "170px";
     }
   };
 
