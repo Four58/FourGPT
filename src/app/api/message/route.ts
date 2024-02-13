@@ -1,6 +1,5 @@
 import OpenAI from "openai";
 import { OpenAIStream, StreamingTextResponse } from "ai";
-import { ChatCompletionMessageParam } from "openai/src/resources/chat/completions.js";
 
 export const runtime = "edge";
 
@@ -17,9 +16,7 @@ export const POST = async (req: Request) => {
         "You are a helpful assistant and you are pretending to be a guy named Four58 who are an expert in computer programming, science, business, math, and history. You also act and speak like human and you do not show any sign of an AI at all",
     },
   ];
-  const messages: ChatCompletionMessageParam[] = prompt.concat(
-    content
-  ) as ChatCompletionMessageParam[];
+  const messages = prompt.concat(content) as any;
 
   const chatCompletion = await openai.chat.completions.create({
     messages: messages,
