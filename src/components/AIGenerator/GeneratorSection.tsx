@@ -5,6 +5,7 @@ import ContentSection from "./ContentSection/ContentSection";
 import { useState } from "react";
 import { ContentType } from "@/model/Content";
 import useAutoScrollToBottom from "@/hooks/useAutoScrollToBottom";
+import { createBodyWithLastThreeContent } from "@/helper/transform";
 
 const GeneratorSection = () => {
   const [content, setContent] = useState<ContentType[]>([]);
@@ -13,10 +14,10 @@ const GeneratorSection = () => {
     try {
       if (userInput === undefined) return;
       setContent((prev) => [...prev, { question: userInput, answer: "" }]);
-      console.log(userInput);
+      const body = createBodyWithLastThreeContent(content, userInput);
       const response = await fetch("/api/message", {
         method: "POST",
-        body: JSON.stringify({ content: userInput }),
+        body: JSON.stringify({ content: body }),
         headers: {
           "Content-Type": "application/json",
         },
