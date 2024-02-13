@@ -12,7 +12,7 @@ type props = {
 
 const ContentSection = ({ content }: props) => {
   return (
-    <div className="px-4 h-full w-full flex flex-col">
+    <div className="h-full w-full flex flex-col">
       {content.length !== 0 ? <Content content={content} /> : <NoContent />}
     </div>
   );

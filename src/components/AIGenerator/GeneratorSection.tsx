@@ -57,7 +57,7 @@ const GeneratorSection = () => {
         ref={ref}
         className="w-full h-full flex overflow-y-scroll items-center justify-center"
       >
-        <div className="flex justify-center items-center h-full flex-col w-full px-10 md:px-0 md:w-[700px]">
+        <div className="flex justify-center items-center h-full flex-col w-full md:w-[700px]">
           <ContentSection content={content} />
         </div>
       </div>
