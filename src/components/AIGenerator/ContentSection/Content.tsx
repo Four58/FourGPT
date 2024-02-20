@@ -26,7 +26,7 @@ const Content = ({ content }: props) => {
           <div>
             <p className="font-semibold text-white">four58</p>
             <Markdown
-              className="leading-7 font-light max-w-xl text-gray-200 prose dark:prose-invert"
+              className="leading-7 font-light max-w-xl text-gray-200"
               remarkPlugins={[remarkGfm]}
               components={{
                 code(props) {
